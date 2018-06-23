@@ -1,4 +1,4 @@
-package com.redfox.chess;
+package com.redfox.chess.util;
 
 public enum  Color{
 B(0),W(1);

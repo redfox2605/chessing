@@ -1,4 +1,4 @@
-package com.redfox.chess;
+package com.redfox.chess.pieces;
 
 public abstract class AbstractPiece implements Piece {
 

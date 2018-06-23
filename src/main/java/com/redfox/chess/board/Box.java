@@ -1,4 +1,6 @@
-package com.redfox.chess;
+package com.redfox.chess.board;
+
+import com.redfox.chess.pieces.AbstractPiece;
 
 public class Box {
 

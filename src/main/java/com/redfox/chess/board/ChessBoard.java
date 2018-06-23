@@ -1,4 +1,7 @@
-package com.redfox.chess;
+package com.redfox.chess.board;
+
+import com.redfox.chess.util.Color;
+import com.redfox.chess.pieces.Horse;
 
 public class ChessBoard {
 
