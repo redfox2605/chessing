@@ -1,12 +1,14 @@
 package com.redfox.chess.board;
 
 import com.redfox.chess.pieces.*;
+import com.redfox.chess.pieces.factory.BlackFactory;
+import com.redfox.chess.pieces.factory.PieceFactory;
+import com.redfox.chess.pieces.factory.WhiteFactory;
 import com.redfox.chess.util.Color;
 import com.redfox.chess.util.InvalidMoveException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class ChessBoard {
 
@@ -83,7 +85,6 @@ public class ChessBoard {
 
     private boolean isValidPosition(int x, int y) {
         return (x >= 0 && x <= 8) && (y >= 0 && y <= 8);
-
     }
 
     public Integer[] movePiece(Color color, int source_x, int source_y, int dest_x, int dest_y) throws InvalidMoveException {

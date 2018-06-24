@@ -1,4 +1,6 @@
-package com.redfox.chess.pieces;
+package com.redfox.chess.pieces.factory;
+
+import com.redfox.chess.pieces.Piece;
 
 public interface PieceFactory {
 
