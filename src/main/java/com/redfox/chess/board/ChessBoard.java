@@ -15,7 +15,6 @@ public class ChessBoard {
     private Box[][] board;
     private List<Piece> removedPiecesBlack;
     private List<Piece> removedPiecesWhite;
-    private Map<Color, Map<Piece, Box>>
 
 
     public ChessBoard() {
@@ -26,7 +25,7 @@ public class ChessBoard {
         int last = 0;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                board[i][j] = last % 2 == 0 ? new Box(Color.W, i, j) : new Box(Color.B, i, j);
+                board[i][j] = last % 2 == 0 ? new Box(Color.W) : new Box(Color.B);
                 last++;
             }
             last--;
@@ -47,9 +46,6 @@ public class ChessBoard {
 
     }
 
-    public<> getAvailablePieces(Color color){
-
-    }
 
     private void takePiece(int x, int y) {
         Piece piece = board[x][y].getPiece();
@@ -71,6 +67,11 @@ public class ChessBoard {
         board[dest_x][dest_y].setPiece(piece);
     }
 
+
+    private void updatePieceStatus(Piece piece, int source_x, int source_y, int finalX, int finalY) {
+        removePiece(source_x, source_y);
+        setPiece(piece, finalX, finalY);
+    }
 
     public Integer[] movePiece(Color color, int source_x, int source_y, int dest_x, int dest_y) throws InvalidMoveException {
         int finalX = dest_x;
@@ -95,11 +96,10 @@ public class ChessBoard {
                     break;
                 }
             }
-            removePiece(source_x, source_y);
-            setPiece(piece, finalX, finalY);
+            updatePieceStatus(piece, source_x, source_y, finalX, finalY);
             return new Integer[]{finalX, finalY};
         }
-        throw new InvalidMoveException("this is an illegal move for "+piece.getName());
+        throw new InvalidMoveException("this is an illegal move for " + piece.getName());
     }
 
     public void showBoard() {

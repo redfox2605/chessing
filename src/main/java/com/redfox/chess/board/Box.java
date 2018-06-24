@@ -7,21 +7,10 @@ public class Box {
 
     private Color color;
     private Piece piece;
-    private int x;
-    private int y;
 
-    public int getX() {
-        return x;
-    }
 
-    public int getY() {
-        return y;
-    }
-
-    public Box(Color color, int x, int y) {
+    public Box(Color color) {
         this.color = color;
-        this.x = x;
-        this.y = y;
     }
 
     public void setPiece(Piece piece) {
