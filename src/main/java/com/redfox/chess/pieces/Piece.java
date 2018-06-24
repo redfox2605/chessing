@@ -6,8 +6,13 @@ public abstract class Piece implements PieceInterface {
 
     private int id;
     private Color color;
-    private String name;
+    private String name = "";
     private boolean isTaken = false;
+
+    public Piece(int id, Color color) {
+        this.id = id;
+        this.color = color;
+    }
 
     public void setName(String name) {
         this.name = name;

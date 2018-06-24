@@ -2,19 +2,14 @@ package com.redfox.chess.pieces;
 
 import com.redfox.chess.util.Color;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Knight extends Piece {
 
     private final int offsetX[] = {1, 1, 2, 2, -1, -1, -2, -2};
     private final int offsetY[] = {-2, 2, -1, 1, -2, 2, -1, 1};
 
     public Knight(int id, Color color) {
-        this.setId(id);
-        this.setColor(color);
+        super(id,color);
         this.setName("K"+color+id);
-
     }
 
     @Override

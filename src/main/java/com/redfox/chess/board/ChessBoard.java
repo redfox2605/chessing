@@ -1,9 +1,7 @@
 package com.redfox.chess.board;
 
-import com.redfox.chess.pieces.Path;
-import com.redfox.chess.pieces.Piece;
+import com.redfox.chess.pieces.*;
 import com.redfox.chess.util.Color;
-import com.redfox.chess.pieces.Knight;
 import com.redfox.chess.util.InvalidMoveException;
 
 import java.util.ArrayList;
@@ -35,13 +33,23 @@ public class ChessBoard {
 
     public void initializeBoard() {
         System.out.println("initializing board");
+        PieceFactory blackFactory = new BlackFactory();
+        PieceFactory whiteFactory = new WhiteFactory();
+
         //Initialize black
-        board[0][1].setPiece(new Knight(0, Color.B));
-        board[0][6].setPiece(new Knight(1, Color.B));
+        board[0][1].setPiece(blackFactory.createKnight(0));
+        board[0][6].setPiece(blackFactory.createKnight(1));
+
+        board[0][2].setPiece(blackFactory.createBishop(0));
+        board[0][5].setPiece(blackFactory.createBishop(1));
+
 
         //Initialize white
-        board[2][2].setPiece(new Knight(0, Color.W));
-        board[7][6].setPiece(new Knight(1, Color.W));
+        board[2][2].setPiece(whiteFactory.createKnight(0));
+        board[7][6].setPiece(whiteFactory.createKnight(1));
+
+        board[7][2].setPiece(whiteFactory.createBishop(0));
+        board[7][5].setPiece(whiteFactory.createBishop(1));
 
 
     }
@@ -73,7 +81,16 @@ public class ChessBoard {
         setPiece(piece, finalX, finalY);
     }
 
+    private boolean isValidPosition(int x, int y) {
+        return (x >= 0 && x <= 8) && (y >= 0 && y <= 8);
+
+    }
+
     public Integer[] movePiece(Color color, int source_x, int source_y, int dest_x, int dest_y) throws InvalidMoveException {
+        //check source and destination cordinates are inside the board
+        if (!isValidPosition(source_x, source_y) || !isValidPosition(dest_x, dest_y)) {
+            throw new InvalidMoveException("Provided coordinates are out of the board");
+        }
         int finalX = dest_x;
         int finalY = dest_y;
         Piece piece = board[source_x][source_y].getPiece();
