@@ -1,33 +1,49 @@
 package com.redfox.chess.board;
 
-import com.redfox.chess.pieces.AbstractPiece;
+import com.redfox.chess.pieces.Piece;
+import com.redfox.chess.util.Color;
 
 public class Box {
 
-    private int color;
-    private AbstractPiece piece;
+    private Color color;
+    private Piece piece;
+    private int x;
+    private int y;
 
-
-    public Box(int color){
-        this.color = color;
+    public int getX() {
+        return x;
     }
 
-    public void setPiece(AbstractPiece piece) {
+    public int getY() {
+        return y;
+    }
+
+    public Box(Color color, int x, int y) {
+        this.color = color;
+        this.x = x;
+        this.y = y;
+    }
+
+    public void setPiece(Piece piece) {
         this.piece = piece;
     }
 
-    public int getColor() {
+    public void removePiece(){
+        this.piece = null;
+    }
+
+    public Color getColor() {
 
         return color;
     }
 
 
-    public AbstractPiece getPiece() {
+    public Piece getPiece() {
         return piece;
     }
 
     public String showBox(){
-        return "Box color: " + color + " Piece:" + piece.getName();
+        return "Box color: " + color + " PieceInterface:" + piece.getName();
     }
 
 

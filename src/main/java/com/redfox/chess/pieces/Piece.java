@@ -1,7 +1,42 @@
 package com.redfox.chess.pieces;
 
-public interface Piece {
+import com.redfox.chess.util.Color;
 
-    public void isValidMovement(int source_x, int source_y, int destination_x, int destination_y);
-    public void isAvailable();
+public abstract class Piece implements PieceInterface {
+
+    private int id;
+    private Color color;
+    private String name;
+    private boolean isTaken = false;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getId() {
+
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setColor(Color color){
+        this.color = color;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean isTaken(){ return isTaken; }
+
+    public void setTaken() {
+        isTaken = true;
+    }
 }
