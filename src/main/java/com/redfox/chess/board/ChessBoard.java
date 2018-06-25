@@ -64,7 +64,7 @@ public class ChessBoard {
     }
 
     private void takePiece(int x, int y) {
-        Piece piece = board[x][y].getPiece();
+        Piece piece = getPieceAtBox(x, y);
         piece.setTaken();
         if (piece.getColor() == Color.B) {
             removedPiecesBlack.add(piece);
@@ -108,7 +108,7 @@ public class ChessBoard {
         }
         int finalX = dest_x;
         int finalY = dest_y;
-        Piece piece = board[source_x][source_y].getPiece();
+        Piece piece = getPieceAtBox(source_x, source_y);
         if (piece == null) throw new InvalidMoveException("source cordinates are invalid");
         if (piece.getColor() != color) throw new InvalidMoveException("You can't move pieces of another color");
 
@@ -116,7 +116,7 @@ public class ChessBoard {
         if (path != null) {
             List<Integer[]> tracePath = path.getTracePath();
             for (Integer[] pos : tracePath) {
-                Piece other = board[pos[0]][pos[1]].getPiece();
+                Piece other = getPieceAtBox(pos[0], pos[1]);
                 if (other != null) {
                     if (other.getColor() == color) {
                         throw new InvalidMoveException("there is a piece of your color in the path to your destination");
@@ -138,10 +138,10 @@ public class ChessBoard {
 
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                if (board[i][j].getPiece() == null) {
+                if (getPieceAtBox(i,j) == null) {
                     System.out.print(board[i][j].getColor() + "    ");
                 } else {
-                    System.out.print(board[i][j].getPiece().getName() + "  ");
+                    System.out.print(getPieceAtBox(i, j).getName() + "  ");
                 }
             }
             System.out.println();
