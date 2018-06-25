@@ -34,7 +34,6 @@ public class ChessBoard {
 
 
     public void initializeBoard() {
-        System.out.println("initializing board");
         PieceFactory blackFactory = new BlackFactory();
         PieceFactory whiteFactory = new WhiteFactory();
 
@@ -50,12 +49,19 @@ public class ChessBoard {
         board[2][2].setPiece(whiteFactory.createKnight(0));
         board[7][6].setPiece(whiteFactory.createKnight(1));
 
-        board[7][2].setPiece(whiteFactory.createBishop(0));
+        board[3][2].setPiece(whiteFactory.createBishop(0));
         board[7][5].setPiece(whiteFactory.createBishop(1));
 
 
     }
 
+
+    public List<Piece> getTakenPieces(Color color) {
+        if (color == Color.B) {
+            return removedPiecesBlack;
+        }
+        return removedPiecesWhite;
+    }
 
     private void takePiece(int x, int y) {
         Piece piece = board[x][y].getPiece();
@@ -69,11 +75,19 @@ public class ChessBoard {
 
     }
 
-    public void removePiece(int source_x, int source_y) {
+
+    public Piece getPieceAtBox(int x, int y) {
+        if (isValidPosition(x, y)) {
+            return board[x][y].getPiece();
+        }
+        return null;
+    }
+
+    private void removePiece(int source_x, int source_y) {
         board[source_x][source_y].removePiece();
     }
 
-    public void setPiece(Piece piece, int dest_x, int dest_y) {
+    private void setPiece(Piece piece, int dest_x, int dest_y) {
         board[dest_x][dest_y].setPiece(piece);
     }
 

@@ -10,9 +10,7 @@ public class Main {
 
         ChessBoard chessBoard = new ChessBoard();
         chessBoard.initializeBoard();
-        //chessBoard.showBoard();
 
-        //TODO add moves t
         try {
             chessBoard.movePiece(Color.B,0,1,2,2);
         }catch (InvalidMoveException e){
